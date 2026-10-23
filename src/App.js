@@ -1,8 +1,8 @@
-import logo from './logo.svg';
+import { Link } from 'react-router-dom';
 import './App.css';
 import { Row, Col, Card } from 'antd';
 const { Meta } = Card;
-const lists = [
+export const lists = [
   {
     name: "在线地图",
     pageName: "demo1",
@@ -234,16 +234,17 @@ function App() {
   return (
     <div className="App">
       <Row>
-        {lists.map((value, i) => {
-          return <Col span={6}>
-            <Card
-              hoverable
-              style={{ margin: 10 }}
-              cover={<img src={value.url} />}
-            >
-              <Meta title={value.name} />
-              {value.name}
-            </Card>
+        {lists.map((value) => {
+          return <Col span={6} key={value.pageName}>
+            <Link to={`/demo/${value.pageName}`}>
+              <Card
+                hoverable
+                style={{ margin: 10 }}
+                cover={<img src={value.url} alt={value.name} />}
+              >
+                <Meta title={value.name} />
+              </Card>
+            </Link>
           </Col>
         })
         }
